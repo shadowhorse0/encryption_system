@@ -1,0 +1,15 @@
+<apex:page controller="mini_proj">
+<apex:form >
+<apex:pageBlock >
+    <apex:outputLabel >Enter key: </apex:outputLabel>
+    <apex:inputText value="{!key}"/><br/><br/>
+	<apex:outputLabel >Enter text: </apex:outputLabel>
+    <apex:inputText value="{!text}"/><br/><br/>
+    <apex:commandButton value="Encrypt" action="{!getEncrypted}"/><br/><br/>
+    <apex:commandButton value="Decrypt" action="{!getDecrypted}"/><br/><br/>
+    <apex:commandButton value="Getkey" action="{!getKey}"/><br/><br/>
+    <apex:outputLabel >Result: </apex:outputLabel>
+    <apex:outputLabel >{!result}</apex:outputLabel>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

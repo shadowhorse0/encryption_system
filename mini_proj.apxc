@@ -1,0 +1,36 @@
+public class mini_proj {
+    public String text{get;set;}
+    public String key{get;set;}
+    public String result{get;set;}
+    
+    public pageReference getEncrypted()
+    {
+        Blob cryptokey = EncodingUtil.base64Decode(key);
+        Blob to_encrypt = Blob.valueOf(text);
+        Blob encrypted_text = Crypto.encryptWithManagedIV('AES256', cryptoKey, to_encrypt);
+        String encrypted = EncodingUtil.base64Encode(encrypted_text);
+        result = encrypted;
+        return null;
+    }
+    
+    public pageReference getDecrypted()
+    {
+        try {
+            Blob cryptokey = EncodingUtil.base64Decode(key);
+            Blob to_decrypt = EncodingUtil.base64Decode(text);
+            Blob decrypted_text = Crypto.decryptWithManagedIV('AES256', cryptoKey, to_decrypt);
+            String decrypted = decrypted_text.toString();
+            result = decrypted;
+        } catch(Exception e) {
+                result = e.getMessage();
+		}
+        return null;
+    }
+    
+    public pageReference getKey()
+    {
+        Blob cryptoKey = Crypto.generateAesKey(256);
+        result = EncodingUtil.base64Encode(cryptokey);
+        return null;
+    }
+    }
